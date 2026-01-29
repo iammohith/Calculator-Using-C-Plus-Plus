@@ -1,52 +1,58 @@
-# Calculator Using C++
+# Enterprise-Level Calculator (C++)
 
 ## About
-This repository contains a simple calculator program written in C++ that performs basic arithmetic operations such as addition, subtraction, multiplication, and division. It's a great starting point for beginners who are learning C++ programming and want to understand control flow using `switch` statements.
+This is a production-ready, modular calculator application implemented in C++. It follows industry standards for clean architecture, robust error handling, and maintainable project structure.
 
 ## Features
-- Supports four basic operations: addition (`+`), subtraction (`-`), multiplication (`*`), and division (`/`).
-- Handles invalid operator input and division by zero.
-- Provides clear output for each operation.
+- **Modular Design**: Separated concerns into a core library and a CLI front-end.
+- **Robust Error Handling**: Custom exception hierarchy within a dedicated namespace (`calc`).
+- **High Precision**: Uses `double` precision for all arithmetic operations.
+- **Input Validation**: Guaranteed safe execution through rigorous input sanitization.
+- **Unit Tested**: Comprehensive test suite covering success paths and edge cases.
+- **Professional Build System**: Managed via CMake for cross-platform compatibility.
+
+## Project Structure
+```text
+.
+├── CMakeLists.txt              # Project build configuration
+├── calculator.cpp              # Application entry point (CLI)
+├── include/
+│   ├── Calculator.hpp          # Library interface
+│   └── CalculatorExceptions.hpp # Custom exception definitions
+├── src/
+│   └── Calculator.cpp          # Library implementation
+└── tests/
+    └── tests.cpp               # Automated unit tests
+```
 
 ## Getting Started
 
 ### Prerequisites
-- A C++ compiler such as GCC or an IDE that supports C++ (e.g., Code::Blocks, Visual Studio).
-  
-### Installation
-1. Clone the repository to your local machine:
+- C++17 compatible compiler (GCC 7+, Clang 5+, or MSVC 2017+)
+- [CMake](https://cmake.org/download/) 3.10 or higher
+
+### Build and Install
+1. **Create Build Directory**:
    ```bash
-   git clone https://github.com/iammohith/Calculator-Using-C-Plus-Plus.git
+   mkdir build && cd build
    ```
-2. Navigate to the project directory:
+2. **Configure and Build**:
    ```bash
-   cd Calculator-Using-C-Plus-Plus
+   cmake ..
+   make
    ```
-3. Compile the C++ program using a compiler:
+3. **Run Application**:
    ```bash
-   g++ calculator.cpp -o calculator
+   ./calculator_app
    ```
-
-4. Run the executable:
+4. **Run Tests**:
    ```bash
-   ./calculator
+   ./calculator_tests
    ```
 
-### How to Use
-1. Enter an arithmetic operator (`+`, `-`, `*`, or `/`).
-2. Provide two numbers to perform the operation.
-3. The calculator will output the result or an error message if the input is invalid (e.g., division by zero).
+## Design Philosophy
+This project demonstrates the **Single Responsibility Principle** by decoupling mathematical logic from user interaction. It utilizes modern C++ namespaces to ensure easy integration into larger enterprise ecosystems without symbol conflicts.
 
-### Example
-```
-Enter operator either + or - or * or /: +
-Enter the first number: 5
-Enter the second number: 3
-5 + 3 = 8
-```
+## Quality Assurance
+The codebase is verified through a dedicated test suite. You can find the test cases in the `tests/` directory, which use standard assertions to validate arithmetic correctness and exception safety.
 
-## Acknowledgements
-- This project is inspired by beginner-level C++ tutorials and is a helpful tool for those looking to practice control structures in C++.
-
-## References
-- [C++ Documentation](https://cplusplus.com/)

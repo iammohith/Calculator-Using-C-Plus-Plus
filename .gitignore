@@ -1,0 +1,17 @@
+# Build directories
+build/
+bin/
+obj/
+
+# Executables
+calculator_app
+calculator_tests
+
+# MacOS files
+.DS_Store
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo

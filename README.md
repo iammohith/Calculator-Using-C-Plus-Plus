@@ -19,9 +19,9 @@ The application is built on a Layered Architecture pattern to ensure strict sepa
 
 ```mermaid
 graph TD
-    User([User]) <--> CLI[CLI Layer<br/>(calculator.cpp)]
-    CLI <--> Lib[Core Library Layer<br/>(src/Calculator.cpp)]
-    Lib --> Exceptions[Exception Handling<br/>(CalculatorExceptions.hpp)]
+    User([User]) <--> CLI["CLI Layer<br/>(calculator.cpp)"]
+    CLI <--> Lib["Core Library Layer<br/>(src/Calculator.cpp)"]
+    Lib --> Exceptions["Exception Handling<br/>(CalculatorExceptions.hpp)"]
     
     subgraph "Core Library (Namespace: calc)"
         Lib

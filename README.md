@@ -9,6 +9,8 @@ This is a production-ready, modular calculator application implemented in C++. I
 - **High Precision**: Uses `double` precision for all arithmetic operations.
 - **Input Validation**: Guaranteed safe execution through rigorous input sanitization.
 - **Unit Tested**: Comprehensive test suite covering success paths and edge cases.
+- **Automated CI/CD**: GitHub Actions workflow for continuous integration.
+- **Code Style**: Strictly enforced Google C++ style via `.clang-format`.
 - **Professional Build System**: Managed via CMake for cross-platform compatibility.
 
 ## Project Structure

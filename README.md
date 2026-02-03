@@ -13,48 +13,70 @@ This is a production-ready, modular calculator application implemented in C++. I
 - **Code Style**: Strictly enforced Google C++ style via `.clang-format`.
 - **Professional Build System**: Managed via CMake for cross-platform compatibility.
 
-## Project Structure
-```text
-.
-├── CMakeLists.txt              # Project build configuration
-├── calculator.cpp              # Application entry point (CLI)
-├── include/
-│   ├── Calculator.hpp          # Library interface
-│   └── CalculatorExceptions.hpp # Custom exception definitions
-├── src/
-│   └── Calculator.cpp          # Library implementation
-└── tests/
-    └── tests.cpp               # Automated unit tests
+## System Architecture
+
+The application is built on a Layered Architecture pattern to ensure strict separation of concerns.
+
+```mermaid
+graph TD
+    User([User]) <--> CLI[CLI Layer<br/>(calculator.cpp)]
+    CLI <--> Lib[Core Library Layer<br/>(src/Calculator.cpp)]
+    Lib --> Exceptions[Exception Handling<br/>(CalculatorExceptions.hpp)]
+    
+    subgraph "Core Library (Namespace: calc)"
+        Lib
+        Exceptions
+    end
 ```
 
-## Getting Started
+## API Documentation
 
-### Prerequisites
-- C++17 compatible compiler (GCC 7+, Clang 5+, or MSVC 2017+)
-- [CMake](https://cmake.org/download/) 3.10 or higher
+The core logic is available as a reusable library in the `calc` namespace.
 
-### Build and Install
-1. **Create Build Directory**:
+### `calc::Calculator`
+The main class performing arithmetic operations.
+
+| Method | Signature | Description | Throws |
+|--------|-----------|-------------|--------|
+| `add` | `double add(double a, double b)` | Returns the sum of `a` and `b`. | None |
+| `subtract` | `double subtract(double a, double b)` | Returns `a` minus `b`. | None |
+| `multiply` | `double multiply(double a, double b)` | Returns the product of `a` and `b`. | None |
+| `divide` | `double divide(double a, double b)` | Returns `a` divided by `b`. | `calc::DivisionByZeroException` |
+
+### Exception Handling
+All exceptions inherit from `calc::CalculatorException` (which inherits from `std::runtime_error`).
+- `calc::DivisionByZeroException`: Thrown when attempting to divide by zero.
+- `calc::InvalidOperatorException`: Thrown by the CLI when an unknown operator is entered.
+
+## Development & Contribution
+
+### Building form Source
+1. **Clone**: `git clone https://github.com/iammohith/Calculator-Using-C-Plus-Plus.git`
+2. **Build**:
    ```bash
    mkdir build && cd build
-   ```
-2. **Configure and Build**:
-   ```bash
    cmake ..
-   make
-   ```
-3. **Run Application**:
-   ```bash
-   ./calculator_app
-   ```
-4. **Run Tests**:
-   ```bash
-   ./calculator_tests
+   cmake --build .
    ```
 
-## Design Philosophy
-This project demonstrates the **Single Responsibility Principle** by decoupling mathematical logic from user interaction. It utilizes modern C++ namespaces to ensure easy integration into larger enterprise ecosystems without symbol conflicts.
+### Running Tests
+We use CTest for unit testing.
+```bash
+cd build
+ctest --output-on-failure
+```
 
-## Quality Assurance
-The codebase is verified through a dedicated test suite. You can find the test cases in the `tests/` directory, which use standard assertions to validate arithmetic correctness and exception safety.
+### Coding Standards
+This project adheres to **Google C++ Style**.
+- Run `clang-format -i src/*.cpp include/*.hpp` before committing.
+- Ensure all new methods have Doxygen comments.
+
+## Numerical Stability Notes
+- Operations are performed using `double` precision (IEEE 754).
+- Overflow/Underflow behavior follows standard C++ rules (typically resulting in `inf` or `-inf`).
+- Division by zero is strictly trapped and throws an exception.
+
+## License
+Distributed under the MIT License. See `LICENSE` for more information.
+
 

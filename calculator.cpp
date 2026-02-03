@@ -46,7 +46,25 @@ char getOperatorInput() {
     }
 }
 
-int main() {
+int main(int argc, char *argv[]) {
+    // Handle CLI arguments
+    if (argc > 1) {
+        std::string arg = argv[1];
+        if (arg == "--help" || arg == "-h") {
+            std::cout << "Usage: calculator_app [options]\n"
+                      << "Options:\n"
+                      << "  -h, --help     Show this help message\n"
+                      << "  -v, --version  Show version information\n"
+                      << "Description:\n"
+                      << "  Interactive command-line calculator supporting basic arithmetic.\n";
+            return 0;
+        }
+        if (arg == "--version" || arg == "-v") {
+            std::cout << "Calculator App v1.0.0\n";
+            return 0;
+        }
+    }
+
     calc::Calculator calc;
 
     std::cout << "--- Improved Calculator Application ---" << std::endl;

@@ -56,8 +56,25 @@ All exceptions inherit from `calc::CalculatorException` (which inherits from `st
    ```bash
    mkdir build && cd build
    cmake ..
-   cmake --build .
+   ./calculator_app
    ```
+
+### Usage Examples
+**Interactive Mode**:
+```bash
+./calculator_app
+# Follow on-screen prompts
+```
+
+**Help**:
+```bash
+./calculator_app --help
+```
+
+**Version**:
+```bash
+./calculator_app --version
+```
 
 ### Running Tests
 We use CTest for unit testing.
